@@ -35,7 +35,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy curl xrandr xorg-minimal xorg-fonts mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config
+sudo xbps-install -Sy curl xrandr xorg-minimal xorg-fonts mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel x86-input-libinput font-cozette
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -107,9 +107,11 @@ cd ~
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/dwm-flexipatch -o .config/suckless/dwm
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
 cd .config/suckless/dwm
+sed -i 's/#bbbbbb/#ebdbb2/g; s/#222222/#1d2021/g; s/#444444/#928374/g; s/#eeeeee/#ebdbb2/g; s/#005577/#458588/g; s/monospace/CozetteVector' config.h
 sudo make install 
 cd ..
 cd st
+sed -i 's/Liberation Mono/Cozette Vector/g; s/:antialias=true:autohing-true//g; s/black/#1d2021/g; s/red3/#cc241d/g; s/green3/#98971a/g; s/yellow3/#d79921; s/blue2/#458588; s/magenta3/#b16286/g; s/cyan3/#689d6a/g; s/gray90/#a89984; s/gray50/#928374/g; s/red/#fb4934/g; s/green/#b8bb26/g; s/yellow/#fabd2f/g; s/#5c5cff/#83a598/g; s/magenta/#d3869b/g; s/cyan/#8ec07c/g; s/white/#ebdbb2/g; s/defaultfg = 259/defaultfg = 15/g; s/defaultbg = 258/default = 0/g'
 sudo make install 
 cd ~
 

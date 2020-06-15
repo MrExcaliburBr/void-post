@@ -105,6 +105,7 @@ alias ka='killall'
 alias xi='sudo xbps-install -Su'
 alias xq='xbps-query'
 alias xr='sudo xbps-remove'
+alias weather='curl wttr.in'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
