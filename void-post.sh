@@ -111,9 +111,7 @@ sed -i 's/#bbbbbb/#ebdbb2/g; s/#222222/#1d2021/g; s/#444444/#928374/g; s/#eeeeee
 sudo make install 
 cd ..
 cd st
-sed -i 's/Liberation Mono/Cozette Vector/g; s/:antialias=true:autohing-true//g;
-s/black/#1d2021/g; s/red3/#cc241d/g; s/green3/#98971a/g; s/yellow3/#d79921/g;
-s/blue2/#458588/g; s/magenta3/#b16286/g; s/cyan3/#689d6a/g; s/gray90/#a89984/g; s/gray50/#928374/g; s/red/#fb4934/g; s/green/#b8bb26/g; s/yellow/#fabd2f/g; s/#5c5cff/#83a598/g; s/magenta/#d3869b/g; s/cyan/#8ec07c/g; s/white/#ebdbb2/g; s/defaultfg = 259/defaultfg = 15/g; s/defaultbg = 258/default = 0/g'
+sed -i 's/Liberation Mono/Cozette Vector/g; s/:antialias=true:autohing-true//g; s/black/#1d2021/g; s/red3/#cc241d/g; s/green3/#98971a/g; s/yellow3/#d79921/g; s/blue2/#458588/g; s/magenta3/#b16286/g; s/cyan3/#689d6a/g; s/gray90/#a89984/g; s/gray50/#928374/g; s/red/#fb4934/g; s/green/#b8bb26/g; s/yellow/#fabd2f/g; s/#5c5cff/#83a598/g; s/magenta/#d3869b/g; s/cyan/#8ec07c/g; s/white/#ebdbb2/g; s/defaultfg = 259/defaultfg = 15/g; s/defaultbg = 258/default = 0/g'
 sudo make install 
 cd ~
 
