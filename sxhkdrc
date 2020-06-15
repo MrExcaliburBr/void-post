@@ -76,7 +76,7 @@ super + shift + x
 
 #File Manager
 super + f
-	st -e nnn
+	st -e ranger
 
 #Emoji
 super + e 
