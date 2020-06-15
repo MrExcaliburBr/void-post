@@ -80,7 +80,7 @@ super + f
 
 #Emoji
 super + e 
-	cat ~/.config/kaomoji/kaomoji | sed "s/[[:space:]]//g;s/#/ /g" | dmenu -i -l 30 | sed "s/ .*//g" | tr -d '\n' | xclip -selection clipboard 
+	cat ~/.config/kaomoji | sed "s/[[:space:]]//g;s/#/ /g" | dmenu -i -l 30 | sed "s/ .*//g" | tr -d '\n' | xclip -selection clipboard 
 
 #=================================================================================================================================================
 
