@@ -28,13 +28,14 @@
 
 #creating necessary directories
 mkdir ~/.local
+mkdir ~/.local/share/
 mkdir ~/.cache
 mkdir ~/pix
 mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy curl xrandr xorg-minimal xorg-fonts mesa-dri intel-video-accel scc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m
+sudo xbps-install -Sy curl xrandr xorg-minimal xorg-fonts mesa-dri intel-video-accel scc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make 
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -59,10 +60,11 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/zshrc --cr
 #VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PlugInstall +qa
 
 #Vim config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.vimrc --create-dirs -o ~/.vimrc
+
+vim +PlugInstall +qa
 
 #scripts
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/dwm-bar.sh --create-dirs -o ~/code/scripts/dwm-bar.sh
@@ -107,7 +109,7 @@ cd ~
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
 cd .config/suckless/dwm
 rm config.def.h
-curl https://github.com/MrExcaliburBr/void-post/blob/master/dwm-config -o config.def.h
+curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/dwm-config -o config.def.h
 sudo make install 
 cd ..
 cd st-flexipatch
