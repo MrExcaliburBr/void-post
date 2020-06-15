@@ -71,8 +71,7 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scr
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/quicksearch.sh -o ~/code/scripts/quicksearch.sh
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/prompt.sh -o ~/code/scripts/prompt.sh
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/fuzzyfinder.sh -o ~/code/scripts/fuzzyfinder.sh
-curl
-https://raw.githubusercontent.com/bakkeby/flexipatch-finalizer/master/flexipatch-finalizer.sh -o ~/code/scripts/flexipatch-finalizer.sh
+curl https://raw.githubusercontent.com/bakkeby/flexipatch-finalizer/master/flexipatch-finalizer.sh -o ~/code/scripts/flexipatch-finalizer.sh
 chmod +x ~/code/scripts/dwm-bar.sh
 chmod +x ~/code/scripts/quicksearch.sh
 chmod +x ~/code/scripts/prompt.sh
@@ -108,13 +107,13 @@ cd ~
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/dwm-flexipatch -o .config/suckless/dwm
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
 cd .config/suckless/dwm
-rm config.def.h
-curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/dwm-config -o config.def.h
+sudo rm -f config.def.h
+sudo curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/dwm-config -o config.def.h
 sudo make install 
 cd ..
 cd st-flexipatch
-rm config.def.h
-curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/suckless/st/config.h -o config.def.h
+sudo rm -f config.def.h
+sudo curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/suckless/st/config.h -o config.def.h
 sudo make install 
 cd ~
 
