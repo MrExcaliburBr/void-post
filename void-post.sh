@@ -44,7 +44,7 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/
 
 #sxhkd config
 mkdir ~/.config/sxhkd
-curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/sxhkd/sxhkdrc --create-dirs -o ~/.config/sxhkd/sxhkdrc
+curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/sxhkdrc --create-dirs -o ~/.config/sxhkd/sxhkdrc
 
 #picom config
 mkdir ~/.config/picom
@@ -54,7 +54,7 @@ cat /etc/xdg/picom.conf >> ~/.config/picom/picom.conf
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/kaomoji/kaomoji --create-dirs -o ~/.config/kaomoji
 
 #zsh config
-curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.zshrc --create-dirs -o ~/.zshrc
+curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/zshrc --create-dirs -o ~/.zshrc
 
 #VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -69,10 +69,13 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scr
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/quicksearch.sh -o ~/code/scripts/quicksearch.sh
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/prompt.sh -o ~/code/scripts/prompt.sh
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/fuzzyfinder.sh -o ~/code/scripts/fuzzyfinder.sh
+curl
+https://raw.githubusercontent.com/bakkeby/flexipatch-finalizer/master/flexipatch-finalizer.sh -o flexipatch-finalizer.sh
 chmod +x ~/code/scripts/dwm-bar.sh
 chmod +x ~/code/scripts/quicksearch.sh
 chmod +x ~/code/scripts/prompt.sh
 chmod +x ~/code/scripts/fuzzyfinder.sh
+chmod +x ~/code/scripts/flexipatch-finalizer.sh 
 
 # ~/ cleanup
 mkdir ~/.local/share/task
@@ -88,6 +91,34 @@ cd ~/.config/suckless
 git clone https://github.com/bakkeby/dwm-flexipatch
 git clone https://github.com/bakkeby/st-flexipatch
 git clone https://git.suckless.org/dmenu
+
+#compiling and finalizing suckless stuff 
+rm dwm-flexipatch/patches.def.h
+curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/dwm-patches -o dwm-flexipatch/patches.def.h
+cd dwm-flexipatch
+sudo make install 
+cd ..
+rm st-flexipatch/patches.def.h
+curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/st-patches -o st-flexipatch/patches.def.h
+cd st-flexipatch
+sudo make install
+cd ~
+./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/dwm-flexipatch -o .config/suckless/dwm
+./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
+cd .config/suckless/dwm
+rm config.def.h
+curl https://github.com/MrExcaliburBr/void-post/blob/master/dwm-config -o config.def.h
+sudo make install 
+cd ..
+cd st-flexipatch
+rm config.def.h
+curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/suckless/st/config.h -o config.def.h
+sudo make install 
+cd ~
+
+#Changing xinitrc
+sudo rm /etc/X11/xinit/xinitrc
+sudo curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/xinitrc -o /etc/X11/xinit/xinitrc
 
 #for last: oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
