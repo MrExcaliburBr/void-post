@@ -35,7 +35,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy curl xrandr xorg-minimal xorg-fonts mesa-dri intel-video-accel scc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make 
+sudo xbps-install -Sy curl xrandr xorg-minimal xorg-fonts mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make 
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -71,8 +71,7 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scr
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/quicksearch.sh -o ~/code/scripts/quicksearch.sh
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/prompt.sh -o ~/code/scripts/prompt.sh
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/fuzzyfinder.sh -o ~/code/scripts/fuzzyfinder.sh
-curl
-https://raw.githubusercontent.com/bakkeby/flexipatch-finalizer/master/flexipatch-finalizer.sh -o flexipatch-finalizer.sh
+curl https://raw.githubusercontent.com/bakkeby/flexipatch-finalizer/master/flexipatch-finalizer.sh -o flexipatch-finalizer.sh
 chmod +x ~/code/scripts/dwm-bar.sh
 chmod +x ~/code/scripts/quicksearch.sh
 chmod +x ~/code/scripts/prompt.sh
