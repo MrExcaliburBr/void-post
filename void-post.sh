@@ -108,15 +108,11 @@ cd ~
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
 cd .config/suckless/dwm
 sudo make install 
-sudo rm -f config.h
-sudo curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/dwm-config -o config.h
-sudo make install 
 cd ..
 cd st
 sudo make install 
-sudo rm -f config.h
-sudo curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/suckless/st/config.h -o config.h
-sudo make install 
+cd .. 
+sudo rm -rf dwm-flexipatch st-flexipatch
 cd ~
 
 #Changing xinitrc
