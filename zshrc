@@ -102,6 +102,9 @@ alias se='fuzzyfinder.sh'
 alias la='ls -A'
 alias ..='cd ..'
 alias ka='killall'
+alias xi='sudo xbps-install -Su'
+alias xq='xbps-query'
+alias xr='sudo xbps-remove'
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
