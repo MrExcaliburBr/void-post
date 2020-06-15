@@ -111,8 +111,6 @@ sudo make install
 cd ..
 cd st
 sudo make install 
-cd .. 
-sudo rm -rf dwm-flexipatch st-flexipatch
 cd ~
 
 #Changing xinitrc
