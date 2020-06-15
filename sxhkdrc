@@ -1,0 +1,104 @@
+c;============================
+
+#Brightness
+super + Left 
+	xbacklight -dec 10
+
+super + Right	
+	xbacklight -inc 10
+
+#==========================
+
+#==========================================================================================================================================================================================================================
+#Qutebrowser (Alias hqutebrowser to hardware accel)
+
+########################################
+#Q = Duck Duck go                      #
+#Y = Youtube			       #
+#R = Reddt			       #
+#T = Twitch			       #
+#1 = 10fastfingers		       #
+#G = Github                            #
+#C = Google Classrom                   #
+#A = Government online classes (aulas) #
+########################################
+
+#Opens in a new window
+super + q ; {q,y,r,t,1,g,c,a}
+	qutebrowser --qt-flag ignore-gpu-blacklist --qt-flag enable-gpu-rasterization --qt-flag enable-native-gpu-memory-buffers --qt-flag num-raster-threads=4 --target window {_,youtube.com/feed/subscriptions,reddit.com,twitch.tv,10fastfingers.com,github.com,https://classroom.google.com/u/1/h,https://www.youtube.com/channel/UCfbFento2_mCEyUgeiwImiQ} &
+
+#Opens in current focused haqutebrowser window
+super + ctrl + q ; {y,r,t,1,g,c,a}
+	qutebrowser --qt-flag ignore-gpu-blacklist --qt-flag enable-gpu-rasterization --qt-flag enable-native-gpu-memory-buffers --qt-flag num-raster-threads=4 --target tab {youtube.com/feed/subscriptions,reddit.com,twitch.tv,10fastfingers.com,github.com,https://classroom.google.com/u/1/h,https://www.youtube.com/channel/UCfbFento2_mCEyUgeiwImiQ} &
+
+#Launch dmenu and searches in a new window what you typed
+super + q ; {Return}
+	./code/scripts/quicksearch.sh
+
+#=========================================================================================================================================================================================================================
+
+#==========================================================================
+#Audio
+
+#Volume Up/Down 
+super + Up
+	pulsemixer --change-volume +5
+
+super + Down 
+	pulsemixer --change-volume -5
+
+#Music Play, Pause, Next, Prev
+shift + ctrl + Up
+	st -e cmus & sleep 1s && cmus-remote -p & st -e pulsemixer
+
+shift + ctrl + Down
+	cmus-remote -u
+
+shift + ctrl + Right
+	cmus-remote -n
+
+shift + ctrl + Left
+	cmus-remote -r
+
+#=========================================================================
+
+#==================================================================================================================================================
+
+#Applications
+
+#Pulsemixer
+super + p
+	st -e pulsemixer
+
+#Shutdown/Reboot/Lock
+super + shift + x 
+	prompt.sh 
+
+#File Manager
+super + f
+	st -e nnn
+
+#Emoji
+super + e 
+	cat ~/.config/kaomoji/kaomoji | sed "s/[[:space:]]//g;s/#/ /g" | dmenu -i -l 30 | sed "s/ .*//g" | tr -d '\n' | xclip -selection clipboard 
+
+#=================================================================================================================================================
+
+#============================================================================================================================================
+
+#Printscreen
+
+#Full
+Print 
+	 maim  ~/pix/scrot/$(date +"%d-%m_%-H:%-M")_screenshot.png && notify-send "full screenshot" 
+
+#Selected
+ctrl + @Print
+	 notify-send "selected screenshot"; maim -s ~/pix/scrot/$(date +"%d-%m_%-H:%-M")_screenshot.png && notify-send "selected screenshot taken" 
+
+#Focused 
+super + Print 
+	 maim -i $(xdotool getactivewindow) ~/pix/scrot/$(date +"%d-%m_%-H:%-M")_screenshot.png; notify-send "focused screenshot" 
+
+#==============================================================================================================================================
+
