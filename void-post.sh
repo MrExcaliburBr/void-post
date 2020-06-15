@@ -107,7 +107,7 @@ cd ~
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/dwm-flexipatch -o .config/suckless/dwm
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
 cd .config/suckless/dwm
-sed -i 's/#bbbbbb/#ebdbb2/g; s/#222222/#1d2021/g; s/#444444/#928374/g; s/#eeeeee/#ebdbb2/g; s/#005577/#458588/g; s/monospace/CozetteVector' config.h
+sed -i 's/#bbbbbb/#ebdbb2/g; s/#222222/#1d2021/g; s/#444444/#928374/g; s/#eeeeee/#ebdbb2/g; s/#005577/#458588/g; s/monospace/CozetteVector/g' config.h
 sudo make install 
 cd ..
 cd st
