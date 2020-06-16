@@ -106,13 +106,19 @@ sudo make install
 cd ~
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/dwm-flexipatch -o .config/suckless/dwm
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
+mv void-post/dwm-diff.diff .config/suckless/dwm
+mv void-post/st-diff.diff .config/suckless/st
 cd .config/suckless/dwm
-sed -i 's/#bbbbbb/#ebdbb2/g; s/#222222/#1d2021/g; s/#444444/#928374/g; s/#eeeeee/#ebdbb2/g; s/#005577/#458588/g; s/monospace/CozetteVector/g' config.h
+patch < dwm-diff.diff
+rm dwm-diff.diff
 sudo make install 
 cd ..
 cd st
-sed -i 's/Liberation Mono/Cozette Vector/g; s/:antialias=true:autohing-true//g; s/black/#1d2021/g; s/red3/#cc241d/g; s/green3/#98971a/g; s/yellow3/#d79921/g; s/blue2/#458588/g; s/magenta3/#b16286/g; s/cyan3/#689d6a/g; s/gray90/#a89984/g; s/gray50/#928374/g; s/red/#fb4934/g; s/green/#b8bb26/g; s/yellow/#fabd2f/g; s/#5c5cff/#83a598/g; s/magenta/#d3869b/g; s/cyan/#8ec07c/g; s/white/#ebdbb2/g; s/defaultfg = 259/defaultfg = 15/g; s/defaultbg = 258/defaultbg = 0/g' config.h
+patch < st-diff.diff
+srm st-diff.diff
 sudo make install 
+cd ..
+rm dwm-flexipatch st-flexipatch
 cd ~
 
 #Changing xinitrc
