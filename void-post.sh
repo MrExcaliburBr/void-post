@@ -35,7 +35,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy curl xrandr xorg-minimal xorg-fonts mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel x86-input-libinput font-cozette
+sudo xbps-install -Sy patch curl xrandr xorg-minimal xorg-fonts mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel x86-input-libinput font-cozette
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -118,7 +118,7 @@ patch < st-diff.diff
 srm st-diff.diff
 sudo make install 
 cd ..
-rm dwm-flexipatch st-flexipatch
+rm -rf dwm-flexipatch st-flexipatch
 cd ~
 
 #Changing xinitrc
