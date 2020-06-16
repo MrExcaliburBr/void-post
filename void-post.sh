@@ -115,7 +115,7 @@ sudo make install
 cd ..
 cd st
 patch < st-diff.diff
-srm st-diff.diff
+rm st-diff.diff
 sudo make install 
 cd ..
 rm -rf dwm-flexipatch st-flexipatch
