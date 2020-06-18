@@ -131,10 +131,11 @@ cd ~
 sudo rm /etc/X11/xinit/xinitrc
 sudo cat void-post/xinitrc >> /etc/X11/xinit/xinitrc
 
-#Enabling alsa and networkmanager
-sudo ln -s /etc/sv/alsa /var/service
+#Enabling dbus, alsa and networkmanager
+sudo ln -s /etc/sv/alsa /var/service/
+sudo ln -s /etc/sv/dbus/ /var/service/
 sudo unlink /etc/sv/dhcpcd
-sudo ln -s /etc/sv/NetworkManager /var/service
+sudo ln -s /etc/sv/NetworkManager /var/service/
 
 #for last: oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
