@@ -35,7 +35,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy xsetroot NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
+sudo xbps-install -Sy xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -45,17 +45,16 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/
 
 #sxhkd config
 mkdir ~/.config/sxhkd
-curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/sxhkdrc --create-dirs -o ~/.config/sxhkd/sxhkdrc
+cat void-post/sxhkdrc >> ~/.config/sxhkd/sxhkdrc
 
 #picom config
-mkdir ~/.config/picom
-cat /etc/xdg/picom.conf >> ~/.config/picom/picom.conf
+curl https://raw.githubusercontent.com/yshui/picom/next/picom.sample.conf --create-dirs -o ~/.config/picom/picom.conf
 
 #file for kaomoji binding
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/kaomoji/kaomoji --create-dirs -o ~/.config/kaomoji
 
 #zsh config
-curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/zshrc --create-dirs -o ~/.zshrc
+cat void-post/zshrc >> .zshrc
 
 #VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -95,12 +94,14 @@ git clone https://git.suckless.org/dmenu
 
 #compiling and finalizing suckless stuff 
 rm dwm-flexipatch/patches.def.h
-curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/dwm-patches -o dwm-flexipatch/patches.def.h
+touch dwm-flexipatch/patches.def.h
+cat ~/void-post/dwm-patches >> dwm-flexipatch/patches.def.h
 cd dwm-flexipatch
 sudo make install 
 cd ..
 rm st-flexipatch/patches.def.h
-curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/st-patches -o st-flexipatch/patches.def.h
+touch st-flexipatch/patches.def.h
+cat ~/void-post/st-patches >> st-flexipatch/patches.def.h
 cd st-flexipatch
 sudo make install
 cd ~
@@ -108,6 +109,7 @@ cd ~
 ./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
 mv void-post/dwm-diff.diff .config/suckless/dwm
 mv void-post/st-diff.diff .config/suckless/st
+mv void-post/dmenu-diff.diff .config/suckless/dmenu
 cd .config/suckless/dwm
 patch < dwm-diff.diff
 rm dwm-diff.diff
@@ -118,12 +120,21 @@ patch < st-diff.diff
 rm st-diff.diff
 sudo make install 
 cd ..
+cd dmenu
+patch < dmenu-diff.diff
+sudo make install
+cd ..
 rm -rf dwm-flexipatch st-flexipatch
 cd ~
 
 #Changing xinitrc
 sudo rm /etc/X11/xinit/xinitrc
-sudo curl https://raw.githubusercontent.com/MrExcaliburBr/void-post/master/xinitrc -o /etc/X11/xinit/xinitrc
+sudo cat void-post/xinitrc >> /etc/X11/xinit/xinitrc
+
+#Enabling alsa and networkmanager
+sudo ln -s /etc/sv/alsa /var/service
+sudo unlink /etc/sv/dhcpcd
+sudo ln -s /etc/sv/NetworkManager /var/service
 
 #for last: oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
