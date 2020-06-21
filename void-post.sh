@@ -9,7 +9,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy flatpak xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
+sudo xbps-install -Sy acpid newsboat flatpak xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -41,6 +41,10 @@ vim +PlugInstall +qa
 
 #Flatpak config
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+#Newsboat config
+curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.newsboat/config --create-dirs -o ~/.newsboat/config
+curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.newsboat/urls -o ~/.newsboat/urls
 
 #scripts
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/dwm-bar.sh --create-dirs -o ~/code/scripts/dwm-bar.sh
@@ -108,11 +112,12 @@ cd ~
 sudo rm /etc/X11/xinit/xinitrc
 sudo cp void-post/xinitrc /etc/X11/xinit/xinitrc
 
-#Enabling dbus, alsa and networkmanager
+#Enabling alsa, dbus, networkmanager and acpid 
 sudo ln -s /etc/sv/alsa /var/service/
 sudo ln -s /etc/sv/dbus/ /var/service/
 sudo unlink /etc/sv/dhcpcd
 sudo ln -s /etc/sv/NetworkManager /var/service/
+sudo ln -s /etc/sv/acpid /var/service
 
 #for last: oh-my-zsh
 curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o install.sh
@@ -121,4 +126,5 @@ sh install.sh --unattended --keep-zshrc
 mv .oh-my-zsh oh-my-zsh
 rm install.sh
 sudo mv oh-my-zsh /usr/share/
+echo "DONT FORGET TO REBOOT"
 chsh -s /bin/zsh zezin
