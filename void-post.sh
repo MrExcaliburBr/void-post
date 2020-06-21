@@ -1,30 +1,4 @@
 #! /bin/bash
-#dependencies 
-#xorg
-#xrandr xorg-minimal xorg-fonts mesa-dri intel-video-accel linux-firmware-intel
-
-#dwm and dmenu
-#git scc (gcc se nao der certo) libXinerama-devel libXft-devel freetype-devel
-
-#st
-#libX11-devel ncurses-term 
-
-#coisas que eu uso
-#qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf nnn vim mpv font-cozette font-awesome font-awesome5 fontconfig setxkbmap picom task htop
-
-#plugins
-#oh-my-zsh VimPlug nnn.vim ( os plugins tao no .vimrc )
-#nnn - getplugs; preview-tui; imgthumb
-#10ff 
-
-#discord
-#so pega o tar.gz
-
-#script
-#dwm-bar fuzzyfinder quicksearch prompt kaomoji
-
-##actual script
-#getting stuff 
 
 #creating necessary directories
 mkdir ~/.local
@@ -35,7 +9,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
+sudo xbps-install -Sy flatpak xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -64,6 +38,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.vimrc --create-dirs -o ~/.vimrc
 
 vim +PlugInstall +qa
+
+#Flatpak config
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 #scripts
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/dwm-bar.sh --create-dirs -o ~/code/scripts/dwm-bar.sh
@@ -129,7 +106,7 @@ cd ~
 
 #Changing xinitrc
 sudo rm /etc/X11/xinit/xinitrc
-sudo cat void-post/xinitrc >> /etc/X11/xinit/xinitrc
+sudo cp void-post/xinitrc /etc/X11/xinit/xinitrc
 
 #Enabling dbus, alsa and networkmanager
 sudo ln -s /etc/sv/alsa /var/service/
@@ -138,4 +115,10 @@ sudo unlink /etc/sv/dhcpcd
 sudo ln -s /etc/sv/NetworkManager /var/service/
 
 #for last: oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o install.sh
+chmod +x install.sh
+sh install.sh --unattended --keep-zshrc
+mv .oh-my-zsh oh-my-zsh
+rm install.sh
+sudo mv oh-my-zsh /usr/share/
+chsh -s /bin/zsh zezin
