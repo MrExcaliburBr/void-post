@@ -71,7 +71,9 @@ mkdir .config/tmux
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/tmux/tmux.conf --create-dirs -o ~/.config/tmux/tmux.conf
 mkdir .config/tmux/plugins
 mkdir .config/tmux/tpm
-git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+cd .config/tmux/tpm
+git clone https://github.com/tmux-plugins/tpm
+cd ~
 
 #scripts
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/dwm-bar.sh --create-dirs -o ~/code/scripts/dwm-bar.sh
