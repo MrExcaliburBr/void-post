@@ -31,7 +31,7 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/
 mkdir .config/zsh
 mkdir .config/zsh/plugins
 mkdir .config/zsh/themes
-cp void-post/zsh/zshenv .config/zsh
+cat void-post/zsh/zshenv >> .zshenv
 cp void-post/zsh/zshrc .config/zsh
 cp void-post/zsh/zprofile .config/zsh
 cd .config/zsh/plugins
@@ -68,6 +68,7 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/
 
 #tmux config
 mkdir .config/tmux
+cp void-post/tmux.conf .config/tmux/
 mkdir .tmux
 mkdir .tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
