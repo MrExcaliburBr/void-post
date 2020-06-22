@@ -1,0 +1,57 @@
+fpath+="$ZDOTDIR"/themes/pure
+
+# Enable colors 
+autoload -U colors && colors	
+
+#Propt
+autoload -U promptinit; promptinit
+prompt pure
+
+# Automatically cd into typed directory.
+setopt autocd
+
+# Disable ctrl-s to freeze terminal.
+stty stop undef
+
+# History in cache directory:
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE="$XDG_CACHE_HOME"/zsh/history
+
+# Basic auto/tab complete:
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+#aliases
+alias se='fuzzyfinder.sh'
+alias la='ls -A'
+alias ..='cd ..'
+alias ka='killall'
+alias xi='sudo xbps-install -Su'
+alias xq='xbps-query'
+alias xr='sudo xbps-remove'
+alias weather='curl wttr.in'
+alias discord='flatpak run com.discordapp.Discord'
+
+#Better vi mode
+source "$ZDOTDIR/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+
+#Syntax highlighting (keep on botton)
+source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"

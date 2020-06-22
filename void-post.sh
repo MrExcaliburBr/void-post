@@ -9,7 +9,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy zathura acpid newsboat flatpak xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
+sudo xbps-install -Sy font-awesome5 xclip tmux zathura acpid newsboat flatpak xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -25,10 +25,24 @@ cat void-post/sxhkdrc >> ~/.config/sxhkd/sxhkdrc
 curl https://raw.githubusercontent.com/yshui/picom/next/picom.sample.conf --create-dirs -o ~/.config/picom/picom.conf
 
 #file for kaomoji binding
-curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/kaomoji/kaomoji --create-dirs -o ~/.config/kaomoji
+curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/kaomoji/kaomoji --create-dirs -o ~/.config/kaomoji/kaomoji
 
 #zsh config
-cat void-post/zshrc >> .zshrc
+mkdir .config/zsh
+mkdir .config/zsh/plugins
+mkdir .config/zsh/themes
+cp void-post/zsh/zshenv .config/zsh
+cp void-post/zsh/zshrc .config/zsh
+cp void-post/zsh/zprofile .config/zsh
+cd .config/zsh/plugins
+git clone https://github.com/softmoth/zsh-vim-mode
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+cd ..
+cd themes
+mkdir pure
+cd pure
+git clone https://github.com/sindresorhus/pure.git
+cd ~
 
 #VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -42,12 +56,22 @@ vim +PlugInstall +qa
 #Flatpak config
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
+#installing discord 
+flatpak install flathub com.discordapp.Discord
+
 #Newsboat config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.newsboat/config --create-dirs -o ~/.newsboat/config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.newsboat/urls -o ~/.newsboat/urls
 
 #zathura config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/zathura/zathurarc --create-dirs -o ~/.config/zathura/zathurarc
+
+#tmux config
+mkdir .config/tmux
+curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/tmux/tmux.conf --create-dirs -o ~/.config/tmux/tmux.conf
+mkdir .config/tmux/plugins
+mkdir .config/tmux/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 
 #scripts
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/dwm-bar.sh --create-dirs -o ~/code/scripts/dwm-bar.sh
@@ -122,12 +146,5 @@ sudo unlink /etc/sv/dhcpcd
 sudo ln -s /etc/sv/NetworkManager /var/service/
 sudo ln -s /etc/sv/acpid /var/service
 
-#for last: oh-my-zsh
-curl https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o install.sh
-chmod +x install.sh
-sh install.sh --unattended --keep-zshrc
-mv .oh-my-zsh oh-my-zsh
-rm install.sh
-sudo mv oh-my-zsh /usr/share/
-echo "DONT FORGET TO REBOOT"
-chsh -s /bin/zsh zezin
+#for last: setting zsh as default shell 
+chsh -s /usr/bin/zsh zezin

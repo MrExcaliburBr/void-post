@@ -1,0 +1,17 @@
+#XDG base directory specification
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_CACHE_HOME="$HOME"/.cache
+
+# default programs
+export EDITOR="vim"
+export TERMINAL="st"
+export BROWSER="qutebrowser"
+export READER="zathura"
+
+# ~/ cleanup
+export TASKDATA="$XDG_DATA_HOME"/task
+export TASKRC="$XDG_CONFIG_HOME"/task/taskrc
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+export LESSHISTFILE=-
+export HISTFILE="$XDG_DATA_HOME"/zsh/history
