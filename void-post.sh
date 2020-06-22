@@ -68,12 +68,9 @@ curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/
 
 #tmux config
 mkdir .config/tmux
-curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/tmux/tmux.conf --create-dirs -o ~/.config/tmux/tmux.conf
-mkdir .config/tmux/plugins
-mkdir .config/tmux/tpm
-cd .config/tmux/tpm
-git clone https://github.com/tmux-plugins/tpm
-cd ~
+mkdir .tmux
+mkdir .tmux/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #scripts
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/dwm-bar.sh --create-dirs -o ~/code/scripts/dwm-bar.sh
@@ -149,4 +146,5 @@ sudo ln -s /etc/sv/NetworkManager /var/service/
 sudo ln -s /etc/sv/acpid /var/service
 
 #for last: setting zsh as default shell 
+echo "DONT FORGET TO TMUX SOURCE AND REBOOT"
 chsh -s /usr/bin/zsh zezin
