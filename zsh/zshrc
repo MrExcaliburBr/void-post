@@ -55,3 +55,5 @@ source "$ZDOTDIR/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 
 #Syntax highlighting (keep on botton)
 source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+tmux
+clear
