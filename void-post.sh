@@ -57,7 +57,7 @@ mkdir .tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 #zsh config
-mv voidpost/zshrc ~/
+cp void-post/zshrc 
 mv zshrc .zshrc
 
 #scripts
@@ -136,3 +136,6 @@ sudo ln -s /etc/sv/NetworkManager/ /var/service/
 echo "DONT FORGET TO TMUX SOURCE AND REBOOT"
 curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 ZSH="$HOME/.config/oh-my-zsh" sh install.sh --unattended --keep-zshrc
+cd .config/oh-my-zsh/custom/plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+git clone https://github.com/softmoth/zsh-vim-mode

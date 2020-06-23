@@ -138,5 +138,8 @@ alias xr='sudo xbps-remove'
 alias weather='curl wttr.in'
 alias discord='flatpak run com.discordapp.Discord'
 
+source "$XDG_CONFIG_HOME/oh-my-zsh/custom/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+source "$XDG_CONFIG_HOME/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+
 tmux
 clear
