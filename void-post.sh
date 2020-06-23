@@ -9,7 +9,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy font-awesome5 xclip tmux zathura acpid newsboat flatpak xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
+sudo xbps-install -Sy xdg-utils font-awesome5 xclip tmux zathura acpid newsboat flatpak xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop pulseaudio pulsemixer xbacklight slock w3m make pkg-config xf86-video-intel xf86-input-libinput font-cozette
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -26,23 +26,6 @@ curl https://raw.githubusercontent.com/yshui/picom/next/picom.sample.conf --crea
 
 #file for kaomoji binding
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/kaomoji/kaomoji --create-dirs -o ~/.config/kaomoji/kaomoji
-
-#zsh config
-mkdir .config/zsh
-mkdir .config/zsh/plugins
-mkdir .config/zsh/themes
-cat void-post/zsh/zshenv >> .zshenv
-cp void-post/zsh/zshrc .config/zsh
-cp void-post/zsh/zprofile .config/zsh
-cd .config/zsh/plugins
-git clone https://github.com/softmoth/zsh-vim-mode
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-cd ..
-cd themes
-mkdir pure
-cd pure
-git clone https://github.com/sindresorhus/pure.git
-cd ~
 
 #VimPlug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -72,6 +55,10 @@ cp void-post/tmux.conf .config/tmux/
 mkdir .tmux
 mkdir .tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+#zsh config
+cp voidpost/zshrc .
+mv zshrc .zshrc
 
 #scripts
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/code/scripts/dwm-bar.sh --create-dirs -o ~/code/scripts/dwm-bar.sh
@@ -140,12 +127,12 @@ sudo rm /etc/X11/xinit/xinitrc
 sudo cp void-post/xinitrc /etc/X11/xinit/xinitrc
 
 #Enabling alsa, dbus, networkmanager and acpid 
-sudo ln -s /etc/sv/alsa /var/service/
+sudo ln -s /etc/sv/alsa/ /var/service/
 sudo ln -s /etc/sv/dbus/ /var/service/
 sudo unlink /etc/sv/dhcpcd
-sudo ln -s /etc/sv/NetworkManager /var/service/
-sudo ln -s /etc/sv/acpid /var/service
+sudo ln -s /etc/sv/NetworkManager/ /var/service/
 
 #for last: setting zsh as default shell 
 echo "DONT FORGET TO TMUX SOURCE AND REBOOT"
-chsh -s /usr/bin/zsh zezin
+curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+ZSH="$HOME/.config/oh-my-zsh" sh install.sh --unattended --keep-zshrc

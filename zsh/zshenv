@@ -1,6 +1,0 @@
-#path
-export PATH="$PATH":~/code/scripts/
-
-#Zsh files
-export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
-
