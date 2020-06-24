@@ -78,6 +78,10 @@ super + shift + x
 super + f
 	st -e ranger
 
+#Newsboat
+super + n
+	st -e newsboat
+
 #Emoji
 super + e 
 	cat ~/.config/kaomoji/kaomoji | sed "s/[[:space:]]//g;s/#/ /g" | dmenu -i -l 30 | sed "s/ .*//g" | tr -d '\n' | xclip -selection clipboard 
