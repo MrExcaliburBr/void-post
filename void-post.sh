@@ -9,7 +9,7 @@ mkdir ~/pix/scrot
 mkdir ~/dl
 
 #installing needed packages (or just what i use ;) )
-sudo xbps-install -Sy ueberzug tlp ffmpeg sox alsa-tools xdg-utils font-awesome5 xclip tmux zathura zathura-pdf-poppler acpid newsboat xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim mpv fontconfig-devel setxkbmap picom task htop xbacklight slock make pkg-config xf86-video-intel xf86-input-libinput font-cozette
+sudo xbps-install -Sy ueberzug tlp ffmpeg sox alsa-tools xdg-utils font-awesome5 xclip tmux zathura zathura-pdf-poppler acpid newsboat xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim-x11 mpv fontconfig-devel setxkbmap picom task htop xbacklight slock make pkg-config xf86-video-intel xf86-input-libinput font-cozette
 
 #qutebrowser config
 curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
@@ -32,7 +32,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 #Vim config
-curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.vimrc --create-dirs -o ~/.vimrc
+curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.vimrc --create-dirs -o ~/.vim/vimrc
 
 vim +PlugInstall +qa
 
@@ -123,6 +123,9 @@ cd ..
 rm -rf dwm-flexipatch st-flexipatch
 cd ~
 
+# sound
+sudo cp void-post/asound.conf /etc/
+
 #Changing xinitrc
 sudo rm /etc/X11/xinit/xinitrc
 sudo cp void-post/xinitrc /etc/X11/xinit/xinitrc
@@ -130,11 +133,10 @@ sudo cp void-post/xinitrc /etc/X11/xinit/xinitrc
 #Enabling alsa, dbus, networkmanager and acpid 
 sudo ln -s /etc/sv/alsa/ /var/service/
 sudo ln -s /etc/sv/dbus/ /var/service/
-sudo unlink /etc/sv/dhcpcd
+sudo unlink /etc/sv/dhcpcd/
 sudo ln -s /etc/sv/NetworkManager/ /var/service/
 
 #for last: setting zsh as default shell 
-echo "DONT FORGET TO TMUX SOURCE AND REBOOT"
 curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 ZSH="$HOME/.config/oh-my-zsh" sh install.sh --unattended --keep-zshrc
 cd .config/oh-my-zsh/custom/plugins
