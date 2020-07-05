@@ -137,7 +137,7 @@ alias xu='sudo xbps-install -Su'
 alias xq='xbps-query'
 alias xr='sudo xbps-remove'
 alias weather='curl wttr.in'
-alias discord='flatpak run com.discordapp.Discord'
+alias discord='/usr/lib/discord/Discord'
 
 source "$XDG_CONFIG_HOME/oh-my-zsh/custom/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 source "$XDG_CONFIG_HOME/oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
