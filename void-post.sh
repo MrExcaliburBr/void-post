@@ -13,10 +13,21 @@ mkdir ~/music
 mkdir ~/.config
 mkdir ~/.vim
 
+# ~/ cleanup
+mkdir ~/.local/share/task
+touch ~/.local/share/taskrc
+mkdir ~/.config/less
+touch ~/.config/less/lesskey
+mkdir ~/.config/readline
+touch ~/.config/readline/inputrc
+mkdir ~/.local/share/zsh/
+touch ~/.local/share/zsh/history
+
+
 #installing needed packages (or just what i use ;) )
 sudo xbps-install -Sy gnupg pass passmenu ueberzug tlp ffmpeg sox alsa-tools xdg-utils font-awesome5 xclip tmux zathura zathura-pdf-poppler acpid newsboat xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim-x11 mpv fontconfig-devel setxkbmap picom task htop xbacklight slock make pkg-config xf86-video-intel xf86-input-libinput font-cozette
 
-
+#adding configs
 git clone https://github.com/MrExcaliburBr/voidrice
 rm -rf voidrice/config/suckless/
 mv voidrice/config/* .config
@@ -29,50 +40,6 @@ mv zshrc .zshrc
 sudo rm /etc/X11/xinit/xinitrc
 sudo cp voidrice/xinitrc /etc/X11/xinit/xinitrc
 
-
-#qutebrowser config
-#curl https://raw.githubusercontent.com/MrExcaliburBr/voidrice/master/.config/qutebrowser/config.py --create-dirs -o ~/.config/qutebrowser/config.py
-
-#dunst config
-#curl https://raw.githubusercontent.com/MrExcaliburBr/voidrice/master/.config/dunst/dunstrc --create-dirs -o ~/.config/dunst/dunstrc
-
-#sxhkd config
-#mkdir ~/.config/sxhkd
-#cat void-post/sxhkdrc >> ~/.config/sxhkd/sxhkdrc
-
-#picom config
-#curl https://raw.githubusercontent.com/MrExcaliburBr/voidrice/master/config/picom/picom conf --create-dirs -o ~/.config/picom/picom.conf
-
-#file for kaomoji binding
-#curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/kaomoji/kaomoji --create-dirs -o ~/.config/kaomoji/kaomoji
-
-#VimPlug
-#curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-#    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-#Vim config
-#curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.vimrc --create-dirs -o ~/.vim/vimrc
-
-#vim +PlugInstall +qa
-
-#Newsboat config
-#curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.newsboat/config --create-dirs -o ~/.newsboat/config
-#curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.newsboat/urls -o ~/.newsboat/urls
-
-#zathura config
-#curl https://raw.githubusercontent.com/MrExcaliburBr/My-Dotfiles/master/.config/zathura/zathurarc --create-dirs -o ~/.config/zathura/zathurarc
-
-#tmux config
-#mkdir .config/tmux
-#cp void-post/tmux.conf .config/tmux/
-#mkdir .tmux
-#mkdir .tmux/plugins
-#git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-#zsh config
-#cp void-post/zshrc .
-#mv zshrc .zshrc
-
 #scripts
 cd ~/code
 git clone https://github.com/MrExcaliburBr/scripts
@@ -82,16 +49,6 @@ chmod +x scripts/prompt.sh
 chmod +x scripts/fuzzyfinder.sh
 chmod +x scripts/flexipatch-finalizer.sh 
 cd ~
-
-# ~/ cleanup
-mkdir ~/.local/share/task
-touch ~/.local/share/taskrc
-mkdir ~/.config/less
-touch ~/.config/less/lesskey
-mkdir ~/.config/readline
-touch ~/.config/readline/inputrc
-mkdir ~/.local/share/zsh/
-touch ~/.local/share/zsh/history
 
 #suckless stuff
 mkdir ~/.config/suckless
@@ -147,6 +104,17 @@ sudo ln -s /etc/sv/alsa/ /var/service/
 sudo ln -s /etc/sv/dbus/ /var/service/
 sudo unlink /etc/sv/dhcpcd/
 sudo ln -s /etc/sv/NetworkManager/ /var/service/
+
+#void-packages
+cd .config
+git clone git://github.com/void-linux/void-packages.git
+cd void-packages
+./xbps-src binary-bootstrap
+echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf
+
+#building and installing discord
+./xbps-src pkg discord
+sudo xbps-install -y --repository hostdir/binpkgs/nonfree discord
 
 #for last: setting zsh as default shell 
 curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
