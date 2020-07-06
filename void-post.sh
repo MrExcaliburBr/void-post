@@ -22,7 +22,8 @@ mkdir ~/.config/readline
 touch ~/.config/readline/inputrc
 mkdir ~/.local/share/zsh/
 touch ~/.local/share/zsh/history
-
+mkdir ~/.local/share/gnupg
+mkdir ~/.local/share/pass
 
 #installing needed packages (or just what i use ;) )
 sudo xbps-install -Sy gnupg pass passmenu ueberzug tlp ffmpeg sox alsa-tools xdg-utils font-awesome5 xclip tmux zathura zathura-pdf-poppler acpid newsboat xsetroot tree alsa-lib-devel NetworkManager alsa-utils dbus patch curl xrandr xorg-minimal xorg-fonts xf86-input-evdev xf86-input-synaptics xf86-video-fbdev xf86-video-intel mesa mesa-dri intel-video-accel gcc libXinerama-devel libXft-devel freetype-devel libX11-devel ncurses-term qutebrowser youtube-dl dunst sxhkd unclutter zsh cmus maim feh fzf ranger vim-x11 mpv fontconfig-devel setxkbmap picom task htop xbacklight slock make pkg-config xf86-video-intel xf86-input-libinput font-cozette
@@ -30,12 +31,12 @@ sudo xbps-install -Sy gnupg pass passmenu ueberzug tlp ffmpeg sox alsa-tools xdg
 #adding configs
 git clone https://github.com/MrExcaliburBr/voidrice
 rm -rf voidrice/config/suckless/
-mv voidrice/config/* .config
-mv voidrice/vimrc .vim
+cp -r voidrice/config/* .config
+cp voidrice/vimrc .vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c 'PlugInstall' -c '<\CR>' -c 'qa'
-mv voidrice/zshrc .
+cp voidrice/zshrc .
 mv zshrc .zshrc
 sudo rm /etc/X11/xinit/xinitrc
 sudo cp voidrice/xinitrc /etc/X11/xinit/xinitrc
