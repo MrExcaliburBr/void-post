@@ -44,11 +44,6 @@ sudo cp voidrice/xinitrc /etc/X11/xinit/xinitrc
 #scripts
 cd ~/code
 git clone https://github.com/MrExcaliburBr/scripts
-chmod +x scripts/dwm-bar.sh
-chmod +x scripts/quicksearch.sh
-chmod +x scripts/prompt.sh
-chmod +x scripts/fuzzyfinder.sh
-chmod +x scripts/flexipatch-finalizer.sh 
 cd ~
 
 #suckless stuff
