@@ -31,66 +31,28 @@ sudo xbps-install -Sy gnupg pass passmenu ueberzug tlp ffmpeg sox alsa-tools xdg
 #adding configs
 git clone https://github.com/MrExcaliburBr/voidrice
 rm -rf voidrice/config/suckless/
-cp -r voidrice/config/* .config
-cp voidrice/vimrc .vim
+mv voidrice/config/* .config
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -c 'PlugInstall' -c '<\CR>' -c 'qa'
-cp voidrice/zshrc .
-mv zshrc .zshrc
-sudo rm /etc/X11/xinit/xinitrc
-sudo cp voidrice/xinitrc /etc/X11/xinit/xinitrc
 
 #scripts
-cd ~/code
-git clone https://github.com/MrExcaliburBr/scripts
-cd ~
+git clone https://github.com/MrExcaliburBr/scripts ~/code/scripts
 
 #suckless stuff
 mkdir ~/.config/suckless
-cd ~/.config/suckless
-git clone https://github.com/bakkeby/dwm-flexipatch
-git clone https://github.com/bakkeby/st-flexipatch
+mkdir .config/suckless/dwm
+mkdir .config/suckless/st
+mkdir .config/suckless/dmenu
+git clone https://github.com/MrExcaliburBr/my-dwm
+git clone https://github.com/MrExcaliburBr/my-st
 git clone https://git.suckless.org/dmenu
 
-#compiling and finalizing suckless stuff 
-rm dwm-flexipatch/patches.def.h
-touch dwm-flexipatch/patches.def.h
-cat ~/void-post/dwm-patches >> dwm-flexipatch/patches.def.h
-cd dwm-flexipatch
-sudo make install 
-cd ..
-
-rm st-flexipatch/patches.def.h
-touch st-flexipatch/patches.def.h
-cat ~/void-post/st-patches >> st-flexipatch/patches.def.h
-cd st-flexipatch
-sudo make install
-cd ~
-
-./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/dwm-flexipatch -o .config/suckless/dwm
-./code/scripts/flexipatch-finalizer.sh -r -d .config/suckless/st-flexipatch -o .config/suckless/st
-mv void-post/dwm-diff.diff .config/suckless/dwm
-mv void-post/st-diff.diff .config/suckless/st
-mv void-post/dmenu-diff.diff .config/suckless/dmenu
 cd .config/suckless/dwm
-patch < dwm-diff.diff
-rm dwm-diff.diff
-sudo make install 
-cd ..
-
-cd st
-patch < st-diff.diff
-rm st-diff.diff
-sudo make install 
-cd ..
-
-cd dmenu
-patch < dmenu-diff.diff
 sudo make install
-cd ..
-rm -rf dwm-flexipatch st-flexipatch
-cd ~
+cd ~/.config/suckless/st
+sudo make install
+cd ~/.config/suckless/dmenu
+sudo make install 
 
 # sound
 sudo cp void-post/asound.conf /etc/
@@ -101,20 +63,4 @@ sudo ln -s /etc/sv/dbus/ /var/service/
 sudo unlink /etc/sv/dhcpcd/
 sudo ln -s /etc/sv/NetworkManager/ /var/service/
 
-#void-packages
-cd .config
-git clone git://github.com/void-linux/void-packages.git
-cd void-packages
-./xbps-src binary-bootstrap
-echo XBPS_ALLOW_RESTRICTED=yes >> etc/conf
 
-#building and installing discord
-./xbps-src pkg discord
-sudo xbps-install -y --repository hostdir/binpkgs/nonfree discord
-
-#for last: setting zsh as default shell 
-curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-ZSH="$HOME/.config/oh-my-zsh" sh install.sh --unattended --keep-zshrc
-cd .config/oh-my-zsh/custom/plugins
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-git clone https://github.com/softmoth/zsh-vim-mode
