@@ -1,7 +1,0 @@
-defautls.ctl.card 1;
-defaults.pcm.card 1;
-pcm.bluetooth {
-        type bluetooth
-        device "00:02:5B:00:E7:04"
-        profile "auto"
-}
